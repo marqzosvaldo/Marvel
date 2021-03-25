@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvel.Views.MCharacterDetailPage">
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Always">
+            <Grid BackgroundColor="Transparent">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="350"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="190"/>
+
+                </Grid.RowDefinitions>
+                <StackLayout Spacing="1" Grid.Row="0" Padding="10,0,0,0">
+                    <Label Margin="20,0,0,0" Text="{Binding CharacterName,Mode=TwoWay}" FontAttributes="Bold" VerticalOptions="EndAndExpand"  FontSize="Title" TextColor="DarkSlateGray"/>
+                </StackLayout>
+                <Frame Margin="20,0,20,0" Padding="0" HasShadow="False" CornerRadius="10" Grid.Row="1">
+                    <Image   Margin="0" Aspect="AspectFill" Source="{Binding CharacterPicture,Mode=TwoWay}"/>
+
+                </Frame>
+            
+                <Label Grid.Row="2" Margin="25,0,25,0" Text="{Binding CharacterDescription, Mode=TwoWay}"  
+                    FontSize="Small"  TextColor="DarkSlateGray"/>
+                <StackLayout Margin="20,0,0,0" Grid.Row="3">
+                    <Label Text="Comics" HorizontalOptions="Center" FontAttributes="Bold" TextColor="DarkSlateGray" FontSize="Title"/>
+                </StackLayout>
+                <CarouselView Grid.Row="4" PeekAreaInsets="140"  ItemsSource="{Binding Comics ,Mode=TwoWay}">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"  ItemSpacing="10"/>
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>                          
+                                <Frame                                  
+                                      CornerRadius="10"
+                                       BackgroundColor="Transparent" 
+                                    Margin="0"
+                                       Padding="0"
+                                       HasShadow="False">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0"  Aspect="AspectFit" Margin="0">
+                                        <Image.Source>
+                                            <MultiBinding StringFormat="{}{0}.{1}">
+                                                <Binding Path="Thumbnail.Path"/>
+                                                <Binding Path="Thumbnail.Extension"/>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+
+                                </Grid>
+                                   
+
+                                </Frame>
+                         
+                                
+                            
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+
+                    
+                </CarouselView>
+
+                <StackLayout Padding="0" VerticalOptions="Start" HorizontalOptions="Start" BackgroundColor="Transparent" >
+                    <Button 
+                BackgroundColor="Transparent"
+                Clicked="Button_Clicked"
+                Text="&#xf104;"
+                 TextColor="DarkSlateGray"
+                CornerRadius="25"
+                WidthRequest="50"
+                HeightRequest="50"
+                FontSize="Large"
+                FontFamily="Font_Awesome_Regular"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
+                </StackLayout>
+            </Grid>
+
+        </ScrollView>
+       
+    
+    </ContentPage.Content>
+</ContentPage>
