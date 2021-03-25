@@ -1,45 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Marvel.Views.MCharacters" Title="{Binding Title}">
+             x:Class="Marvel.Views.MCharacters" 
+             Shell.NavBarIsVisible="False"
+             Title="{Binding Title}">
     <ContentPage.Content>
-        <CollectionView
+        <RefreshView  IsRefreshing="{Binding IsRefreshing}"
+            Command ="{Binding RefreshCommand}">
+            <CollectionView
             HeightRequest="170"
-            ItemsSource="{Binding Characters}"
+            x:Name="CollectionCharacter"
+            Scrolled="CollectionView_Scrolled"
+            ItemsSource="{Binding Characters}"           
             ItemsLayout="VerticalGrid, 2"
-            VerticalScrollBarVisibility="Never"
+            VerticalScrollBarVisibility="Always"
             SelectedItem="{Binding SelectedItemCharacter}"
             SelectionChangedCommand="{Binding SelectedCharacterCommand}"
             SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Frame Padding="0" 
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame Padding="0" 
                                CornerRadius="5" 
                                HeightRequest="220" 
                                Margin="2,2,2,0">
-                            <Image Aspect="AspectFill">
-                                <Image.Source>
-                                    <MultiBinding StringFormat="{}{0}.{1}">
-                                        <Binding Path="Thumbnail.Path"/>
-                                        <Binding Path="Thumbnail.Extension"/>
-                                    </MultiBinding>
-                                </Image.Source>
-                            </Image>
-                        </Frame>
+                                <Image Aspect="AspectFill">
+                                    <Image.Source>
+                                        <MultiBinding StringFormat="{}{0}.{1}">
+                                            <Binding Path="Thumbnail.Path"/>
+                                            <Binding Path="Thumbnail.Extension"/>
+                                        </MultiBinding>
+                                    </Image.Source>
+                                </Image>
+                            </Frame>
 
-                        <Label Padding="20,0,0,0"  
+                            <Label Padding="20,0,0,0"  
                                Margin="0,0,0,4"  
                                Text="{Binding Name}"  
                                FontAttributes="Bold" 
                                FontSize="Small"/>
-                    </StackLayout>
+                        </StackLayout>
 
-                </DataTemplate>
+                    </DataTemplate>
 
-            </CollectionView.ItemTemplate>
+                </CollectionView.ItemTemplate>
 
 
-        </CollectionView>
+            </CollectionView>
+
+        </RefreshView>
+       
     </ContentPage.Content>
 </ContentPage>

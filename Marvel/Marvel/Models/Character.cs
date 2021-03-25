@@ -50,15 +50,21 @@ namespace Marvel.Models {
         public string Type { get; set; }
         public string url { get; set; }
     }
+    public class Price {
+        public string type { get; set; }
+        public double price { get; set; }
+    }
 
     public class Result {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public string Modified { get; set; }
         public Thumbnail Thumbnail { get; set; }
         public string ResourceURI { get; set; }
         public Comics Comics { get; set; }
+        public ObservableCollection<Price> prices { get; set; }
         public Series Series { get; set; }
         public Stories Stories { get; set; }
         public Events Events { get; set; }
@@ -82,6 +88,7 @@ namespace Marvel.Models {
         public string Etag { get; set; }
         public Data Data { get; set; }
     }
+
 
 
 

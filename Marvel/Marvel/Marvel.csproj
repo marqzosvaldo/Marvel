@@ -6,6 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\FontAwesome5Brands.otf" />
+    <None Remove="Resources\Fonts\FontAwesome5Regular.otf" />
+    <None Remove="Resources\Fonts\FontAwesome5Solid.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\FontAwesome5Brands.otf" />
+    <EmbeddedResource Include="Resources\Fonts\FontAwesome5Regular.otf" />
+    <EmbeddedResource Include="Resources\Fonts\FontAwesome5Solid.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Refit" Version="6.0.38" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
@@ -13,6 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\MCharacterDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\MCharacters.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
